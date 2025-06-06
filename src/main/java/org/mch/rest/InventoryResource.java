@@ -1,5 +1,6 @@
 package org.mch.rest;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -74,6 +75,7 @@ public class InventoryResource {
 
     @GET
     @Path("/check-stock/{medicineId}/{quantity}")
+    @PermitAll
     public Response checkStock(@PathParam("medicineId") Long medicineId, @PathParam("quantity") int quantity) {
         boolean hasStock = inventoryService.hasSufficientStock(medicineId, quantity);
 
